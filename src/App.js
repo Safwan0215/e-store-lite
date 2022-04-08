@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import MobileVerificationComponent from "./components/MobileVerificationComponent";
+import SetPasswordComponent from "./components/SetPasswordComponent";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path={'/'} element={<LoginComponent />} />
       <Route path={'/register'} element={<RegisterComponent />} />
       <Route path={'/verify-mob'} element={<MobileVerificationComponent />} />
+      <Route path={'/password'} element={<SetPasswordComponent />} />
     </Routes>
   );
 }
