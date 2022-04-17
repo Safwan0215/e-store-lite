@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function AddProductComponent() {
+    const [selectedImages, setSelectedImages] = useState([]);
+    const imageHandler = event => {
+        const MAX_LENGTH = 4;
+        if (Array.from(event.target.files).length > MAX_LENGTH) {
+            event.preventDefault();
+            alert(`Cannot upload files more than ${MAX_LENGTH}`);
+            return;
+        }
+        setSelectedImages([...event.target.files]);
+    }
     return (
         <div className="container">
             <form className="mx-auto mt-5 border p-5">
@@ -29,21 +39,27 @@ function AddProductComponent() {
                                 name='Mobile number'
                             ></input>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Decription</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <div className="mb-3">
+                            <label htmlFor="exampleFormControlTextarea1" className="form-label">Decription</label>
+                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         <div className="form-check form-switch align-self-center">
-                            <label for="flexSwitchCheckChecked" class="form-label">Active</label>
+                            <label htmlFor="flexSwitchCheckChecked" className="form-label">Active</label>
                             <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked" defaultChecked></input>
                         </div>
                     </div>
                     <div className="w-50 p-3">
-                        <div class="mb-3">
-                            <label for="formFileMultiple" class="form-label">Upload Images</label>
-                            <input class="form-control" type="file" id="formFileMultiple" multiple></input>
+                        <div className="mb-3">
+                            <label htmlFor="formFileMultiple" className="form-label">Upload Images</label>
+                            <div className='d-flex'>
+                                {selectedImages.map((image, index) => <div className={`col-${12 / selectedImages.length}`} key={index}><img className='w-100 h-100 img-thumbnail' src={URL.createObjectURL(image)} key={index} alt="selected images" /></div>)}
+                            </div>
+                            <input className="form-control" type="file" id="formFileMultiple" onChange={imageHandler} multiple></input>
                         </div>
                     </div>
+                </div>
+                <div className="text-center">
+                    <button className='btn btn-lg btn-success'>Save</button>
                 </div>
             </form>
         </div>
