@@ -7,6 +7,7 @@ import MobileVerificationComponent from "./components/MobileVerificationComponen
 import SetPasswordComponent from "./components/SetPasswordComponent";
 import ViewProductComponent from "./components/ViewProductComponent";
 import AddProductComponent from "./components/AddProductsComponent";
+import DashboardComponent from "./components/DashbordComponent";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path={'/password'} element={<SetPasswordComponent />} />
       <Route path={'/products'} element={<ViewProductComponent />} />
       <Route path={'/add'} element={<AddProductComponent /> } />
+      <Route path={'/dashboard'} element={<DashboardComponent />} />
     </Routes>
   );
 }
